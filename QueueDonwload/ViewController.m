@@ -18,6 +18,7 @@
 
 - (IBAction)segmentAction:(UISegmentedControl *)sender {
     NSLog(@"\n");
+    _photo.image = nil;
     switch (sender.selectedSegmentIndex) {
         case 0:
             [self serialQueueSynchronize];
@@ -159,8 +160,13 @@
 - (void)loadPic {
     NSURL * url = [NSURL URLWithString:@"http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg"];
     NSURLResponse * rp = nil;
-    [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+    NSData * data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
                           returningResponse:&rp error:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _photo.image = [UIImage imageWithData:data];
+    });
 }
+
+
 
 @end

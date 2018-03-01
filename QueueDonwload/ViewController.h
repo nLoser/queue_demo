@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIView *segment;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
 
 @end
 
