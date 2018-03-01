@@ -35,65 +35,132 @@
         default:
             break;
     }
+    sender.selectedSegmentIndex = -1;
 }
 
 #pragma mark - Private Method
 
 - (void)serialQueueSynchronize {
-    dispatch_queue_t queue_t = dispatch_queue_create("com.lv.render", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue_t = dispatch_queue_create("com.lvSerialSynchronize.render", DISPATCH_QUEUE_SERIAL);
     NSLog(@"串行队列【同步任务】 - %@",[NSThread currentThread]);
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【1】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【2】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【3】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【4】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【5】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【6】 - %@",[NSThread currentThread]);
     });
 }
 
 - (void)serialQueueAsynchronize {
-    dispatch_queue_t queue_t = dispatch_queue_create("com.lv.render", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue_t = dispatch_queue_create("com.lvSerialAsychronize.render", DISPATCH_QUEUE_SERIAL);
     NSLog(@"串行队列【异步任务】 - %@",[NSThread currentThread]);
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【1】 - %@",[NSThread currentThread]);
     });
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【2】 - %@",[NSThread currentThread]);
     });
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【3】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【4】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【5】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【6】 - %@",[NSThread currentThread]);
     });
 }
 
 - (void)concurrentQueueSychronize {
-    dispatch_queue_t queue_t = dispatch_queue_create("com.lv.render", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t queue_t = dispatch_queue_create("com.lvConcurrentSychronize.render", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"并发队列【同步】 - %@",[NSThread currentThread]);
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【1】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【2】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
+        [self loadPic];
         NSLog(@"【3】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【4】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【5】 - %@",[NSThread currentThread]);
+    });
+    dispatch_sync(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【6】 - %@",[NSThread currentThread]);
     });
 }
 
 - (void)concurrentQueueAsychronize {
-    dispatch_queue_t queue_t = dispatch_queue_create("com.lv.render", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t queue_t = dispatch_queue_create("com.lvConcurrentAsychronize.render", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"并发队列【异步】 - %@",[NSThread currentThread]);
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【1】 - %@",[NSThread currentThread]);
     });
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【2】 - %@",[NSThread currentThread]);
     });
     dispatch_async(queue_t, ^{
+        [self loadPic];
         NSLog(@"【3】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【4】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【5】 - %@",[NSThread currentThread]);
+    });
+    dispatch_async(queue_t, ^{
+        [self loadPic];
+        NSLog(@"【6】 - %@",[NSThread currentThread]);
     });
 }
 
+- (void)loadPic {
+    NSURL * url = [NSURL URLWithString:@"http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg"];
+    NSURLRequest * rq = [NSURLRequest requestWithURL:url];
+    NSURLResponse * rp = [[NSURLResponse alloc] init];
+    [NSURLConnection sendSynchronousRequest:rq returningResponse:&rp error:nil];
+}
 
 @end
