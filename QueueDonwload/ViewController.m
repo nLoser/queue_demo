@@ -158,9 +158,9 @@
 
 - (void)loadPic {
     NSURL * url = [NSURL URLWithString:@"http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg"];
-    NSURLRequest * rq = [NSURLRequest requestWithURL:url];
-    NSURLResponse * rp = [[NSURLResponse alloc] init];
-    [NSURLConnection sendSynchronousRequest:rq returningResponse:&rp error:nil];
+    NSURLResponse * rp = nil;
+    [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+                          returningResponse:&rp error:nil];
 }
 
 @end
