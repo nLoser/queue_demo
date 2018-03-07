@@ -10,6 +10,29 @@
 
 @implementation LoadSourceManager
 
+- (id)createRuntimeClass {
+    Class newClass = objc_allocateClassPair([NSObject class], "LVObject", 0);
+    class_addMethod(newClass, @selector(report), (IMP)RepotFuncation, "v@:");
+    
+    objc_registerClassPair(newClass);
+    
+    id instance = [[newClass alloc] init];//[[newClass alloc] initWithDomain:@"someDomain" code:0 userInfo:nil];
+    
+    return instance;
+}
 
+void RepotFuncation(id self, SEL _cmd) {
+    NSLog(@"Class is: %@, Super is: %@",[self class], [self superclass]);
+    NSLog(@"This object is: %p", self);
+    
+    Class currentClass = [self class];
+    
+    for (int i = 1; i < 10; i ++) {
+        NSLog(@"Isa pointer: %d times gives: %p %@", i, currentClass , [NSString stringWithUTF8String:object_getClassName(currentClass)]);
+        currentClass = object_getClass(currentClass);
+    }
+    NSLog(@"NSObject's class is: %p", [NSObject class]);
+    NSLog(@"NSObject's meta class is: %p", object_getClass([NSObject class]));
+}
 
 @end
