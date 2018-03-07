@@ -20,40 +20,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    id instanceOfNewClass = [[[LoadSourceManager alloc] init] createRuntimeClass];
-    
     unsigned int outCount;
-    objc_property_t * propertys = class_copyPropertyList([instanceOfNewClass class], &outCount);
+    objc_property_t * propertys = class_copyPropertyList([self class], &outCount);
     for (int i = 0; i < outCount; i++) {
         objc_property_t property = propertys[i];
         NSString * key = [NSString stringWithUTF8String:property_getName(property)];
-        NSLog(@"%@ - %@\n",key, [self valueForKey:key]);
+        NSLog(@"%d. %@ - %@",i+1,key, [self valueForKey:key]);
     }
     free(propertys);
     
-    Method * methodList = class_copyMethodList([instanceOfNewClass class], &outCount);
+    NSLog(@"\n");
+    
+    Method * methodList = class_copyMethodList([self class], &outCount);
     for (int i = 0; i < outCount; i++) {
         Method temp_m = methodList[i];
-        NSLog(@"-%@",[NSString stringWithUTF8String:sel_getName(method_getName(temp_m))]);
+        NSLog(@"- %@",[NSString stringWithUTF8String:sel_getName(method_getName(temp_m))]);
     }
     free(methodList);
     
     NSLog(@"\n");
     
-    Method * meta_methodList = class_copyMethodList([objc_getMetaClass(object_getClassName(instanceOfNewClass)) class], &outCount);
+    Method * meta_methodList = class_copyMethodList([objc_getMetaClass(object_getClassName(self)) class], &outCount);
     for (int i = 0; i < outCount; i++) {
         Method temp_m = meta_methodList[i];
-        NSLog(@"+%@",[NSString stringWithUTF8String:sel_getName(method_getName(temp_m))]);
+        NSLog(@"+ %@",[NSString stringWithUTF8String:sel_getName(method_getName(temp_m))]);
     }
     free(meta_methodList);
-
-    NSLog(@"%@",object_getClass(instanceOfNewClass));
-    [instanceOfNewClass performSelector:@selector(report)];
 }
 
-
-+ (void)test {
-    
++ (void)metaClassImplementation {
+    //TODO:
 }
 
 #pragma mark - Target Action
