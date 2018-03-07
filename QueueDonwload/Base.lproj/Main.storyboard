@@ -29,6 +29,7 @@
                                     <segment title="串异"/>
                                     <segment title="并同"/>
                                     <segment title="并异"/>
+                                    <segment title="异步主队列"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="V2h-fP-oUB"/>

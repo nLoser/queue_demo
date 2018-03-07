@@ -70,7 +70,9 @@
         case 3:
             [self concurrentQueueAsychronize];
             break;
-            
+        case 4:
+            [self asychronizeBackToMainQueue];
+            break;
         default:
             break;
     }
@@ -192,6 +194,17 @@
     dispatch_async(queue_t, ^{
         [self loadPic];
         NSLog(@"【6】 - %@",[NSThread currentThread]);
+    });
+}
+
+- (void)asychronizeBackToMainQueue {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"1.当前线程: %@",[NSThread currentThread]);
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            sleep(10);
+            NSLog(@"2.当前线程: %@",[NSThread currentThread]);
+        });
+        NSLog(@"3.当前线程 %@",[NSThread currentThread]);
     });
 }
 
