@@ -16,7 +16,7 @@
     
     objc_registerClassPair(newClass);
     
-    id instance = [[newClass alloc] init];//[[newClass alloc] initWithDomain:@"someDomain" code:0 userInfo:nil];
+    id instance = [[newClass alloc] init];
     
     return instance;
 }
