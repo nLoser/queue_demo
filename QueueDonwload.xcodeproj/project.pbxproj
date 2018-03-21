@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A926CD082052E2E700CA94E1 /* LVView.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CD072052E2E700CA94E1 /* LVView.m */; };
 		A92C87262047ACF900830555 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C87252047ACF900830555 /* AppDelegate.m */; };
 		A92C87292047ACF900830555 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C87282047ACF900830555 /* ViewController.m */; };
 		A92C872C2047ACF900830555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A92C872A2047ACF900830555 /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A926CD062052E2E700CA94E1 /* LVView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LVView.h; sourceTree = "<group>"; };
+		A926CD072052E2E700CA94E1 /* LVView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LVView.m; sourceTree = "<group>"; };
 		A92C87212047ACF800830555 /* QueueDonwload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueueDonwload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92C87242047ACF900830555 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A92C87252047ACF900830555 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 			children = (
 				A92C873B2047AD6000830555 /* LoadSourceManager.h */,
 				A92C873C2047AD6000830555 /* LoadSourceManager.m */,
+				A926CD062052E2E700CA94E1 /* LVView.h */,
+				A926CD072052E2E700CA94E1 /* LVView.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				A92C87342047ACF900830555 /* main.m in Sources */,
 				A92C873D2047AD6000830555 /* LoadSourceManager.m in Sources */,
 				A92C87262047ACF900830555 /* AppDelegate.m in Sources */,
+				A926CD082052E2E700CA94E1 /* LVView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

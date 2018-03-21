@@ -13,11 +13,8 @@
 - (id)createRuntimeClass {
     Class newClass = objc_allocateClassPair([NSObject class], "LVObject", 0);
     class_addMethod(newClass, @selector(report), (IMP)RepotFuncation, "v@:");
-    
     objc_registerClassPair(newClass);
-    
     id instance = [[newClass alloc] init];
-    
     return instance;
 }
 

@@ -41,14 +41,24 @@
                                     <constraint firstAttribute="height" constant="171" id="eNk-9u-kMr"/>
                                 </constraints>
                             </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="08c-vS-hyv">
+                                <rect key="frame" x="10" y="133" width="355" height="29"/>
+                                <segments>
+                                    <segment title="串行动态调度管理"/>
+                                    <segment title="并行成串行执行队列"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="08c-vS-hyv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="3Ld-1G-b9W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yDv-sY-M7I" secondAttribute="trailing" constant="10" id="78T-fS-xcs"/>
                             <constraint firstItem="yDv-sY-M7I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="8Nb-mv-Cdf"/>
                             <constraint firstItem="yDv-sY-M7I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="QmK-Y3-Hzs"/>
+                            <constraint firstAttribute="trailing" secondItem="08c-vS-hyv" secondAttribute="trailing" constant="10" id="UE7-9s-iVL"/>
                             <constraint firstItem="AW8-o4-E8A" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="10" id="VSe-xR-Txo"/>
                             <constraint firstItem="AW8-o4-E8A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="XYf-CB-put"/>
+                            <constraint firstItem="08c-vS-hyv" firstAttribute="top" secondItem="AW8-o4-E8A" secondAttribute="bottom" constant="52" id="Xj4-1z-vnL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yDv-sY-M7I" secondAttribute="trailing" constant="10" id="f08-sS-gxg"/>
                             <constraint firstItem="iBN-mX-Ts7" firstAttribute="top" secondItem="yDv-sY-M7I" secondAttribute="bottom" constant="20" id="iIa-2S-J9f"/>
                             <constraint firstItem="AW8-o4-E8A" firstAttribute="top" secondItem="gix-sD-6QB" secondAttribute="bottom" constant="33" id="uRL-uc-enV"/>
@@ -57,11 +67,12 @@
                     <connections>
                         <outlet property="photo" destination="yDv-sY-M7I" id="KXF-Iw-boF"/>
                         <outlet property="segment" destination="8bC-Xf-vdC" id="6rw-a3-CWQ"/>
+                        <outlet property="segment2" destination="08c-vS-hyv" id="Xoc-gr-Af3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-718" y="-251"/>
+            <point key="canvasLocation" x="-719.20000000000005" y="-251.42428785607197"/>
         </scene>
     </scenes>
 </document>
