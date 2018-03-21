@@ -200,43 +200,44 @@
 
 #pragma mark - Target Action
 
+- (IBAction)segment2Action:(UISegmentedControl *)sender {
+    NSLog(@"\n");
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self setTargetQueueOne];
+            break;
+        case 1:
+            [self setTargetQueueTwo];
+            break;
+        default:
+            break;
+    }
+    sender.selectedSegmentIndex = -1;
+}
+
 - (IBAction)segmentAction:(UISegmentedControl *)sender {
     NSLog(@"\n");
-    if (sender == _segment2) {
-        switch (sender.selectedSegmentIndex) {
-            case 0:
-                [self setTargetQueueOne];
-                break;
-            case 1:
-                [self setTargetQueueTwo];
-                break;
-            default:
-                break;
-        }
-        sender.selectedSegmentIndex = -1;
-    }else if (sender == _segment) {
-        _photo.image = nil;
-        switch (sender.selectedSegmentIndex) {
-            case 0:
-                [self serialQueueSynchronize];
-                break;
-            case 1:
-                [self serialQueueAsynchronize];
-                break;
-            case 2:
-                [self concurrentQueueSychronize];
-                break;
-            case 3:
-                [self concurrentQueueAsychronize];
-                break;
-            case 4:
-                [self asychronizeBackToMainQueue];
-                break;
-            default:
-                break;
-        }
-        sender.selectedSegmentIndex = -1;
+    _photo.image = nil;
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self serialQueueSynchronize];
+            break;
+        case 1:
+            [self serialQueueAsynchronize];
+            break;
+        case 2:
+            [self concurrentQueueSychronize];
+            break;
+        case 3:
+            [self concurrentQueueAsychronize];
+            break;
+        case 4:
+            [self asychronizeBackToMainQueue];
+            break;
+        default:
+            break;
     }
+    sender.selectedSegmentIndex = -1;
 }
 
 @end
