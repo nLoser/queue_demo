@@ -181,21 +181,83 @@
 }
 
 - (void)loadPic {
-    NSURL * url = [NSURL URLWithString:@"http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg"];
+    NSURL * url = [NSURL URLWithString:@"http://img.taopic.com/uploads/allimg/140729/240450-140HZP45790.jpg"];
     NSURLResponse * rp = nil;
+    NSError * error = nil;
     NSData * data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
-                          returningResponse:&rp error:nil];
+                          returningResponse:&rp error:&error];
+    NSLog(@"%@",[NSThread currentThread]);
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (error) {
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController * vc = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            [vc addAction:cancelAction];
+            [self presentViewController:vc animated:YES completion:nil];
+            return ;
+        }
         _photo.image = [UIImage imageWithData:data];
     });
 }
 
 - (void)setTargetQueueOne {
+    dispatch_queue_t queue1 = dispatch_queue_create("com.test.1", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue2 = dispatch_queue_create("com.test.2", DISPATCH_QUEUE_SERIAL);
+    dispatch_set_target_queue(queue1, queue2);
     
+    dispatch_async(queue1, ^{
+        for (int i =0; i < 10; i ++) {
+            NSLog(@"1.queue1:%@,%d",[NSThread currentThread], i);
+            [NSThread sleepForTimeInterval:0.5];
+            if (i == 5) {
+                //dispatch_suspend(queue2);
+            }
+        }
+    });
+    dispatch_async(queue1, ^{
+        for (int i = 0; i < 100; i ++) {
+            [NSThread sleepForTimeInterval:0.1];
+            NSLog(@"2.queue1:%@,%d",[NSThread currentThread], i);
+        }
+    });
+    dispatch_async(queue2, ^{
+        for (int i = 0; i < 100; i ++) {
+            [NSThread sleepForTimeInterval:0.1];
+            NSLog(@"queue2:%@,%d",[NSThread currentThread], i);
+        }
+    });
 }
 
 - (void)setTargetQueueTwo {
+    //1.创建目标队列
+    dispatch_queue_t targetQueue = dispatch_queue_create("test.target.queue", DISPATCH_QUEUE_SERIAL);
     
+    //2.创建3个串行队列
+    dispatch_queue_t queue1 = dispatch_queue_create("test.1", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue2 = dispatch_queue_create("test.2", DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue3 = dispatch_queue_create("test.3", DISPATCH_QUEUE_SERIAL);
+    
+    //3.将3个串行队列分别添加到目标队列
+    dispatch_set_target_queue(queue1, targetQueue);
+    dispatch_set_target_queue(queue2, targetQueue);
+    dispatch_set_target_queue(queue3, targetQueue);
+    
+    
+    dispatch_async(queue1, ^{
+        NSLog(@"1 in");
+        [NSThread sleepForTimeInterval:3.f];
+        NSLog(@"1 out");
+    });
+    
+    dispatch_async(queue2, ^{
+        NSLog(@"2 in");
+        [NSThread sleepForTimeInterval:3.f];
+        NSLog(@"2 out");
+    });
+    dispatch_async(queue3, ^{
+        NSLog(@"3 in");
+        [NSThread sleepForTimeInterval:3.f];
+        NSLog(@"3 out");
+    });
 }
 
 #pragma mark - Target Action
