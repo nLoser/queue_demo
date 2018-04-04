@@ -115,10 +115,12 @@
     NSLog(@"并发队列【同步】 - %@",[NSThread currentThread]);
     dispatch_sync(queue_t, ^{
         [self loadPic];
+        sleep(2);
         NSLog(@"【1】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
         [self loadPic];
+        sleep(2);
         NSLog(@"【2】 - %@",[NSThread currentThread]);
     });
     dispatch_sync(queue_t, ^{
